@@ -17,7 +17,17 @@
         $(function() {
             var myChart1 = echarts.init(document.getElementById('main1'));
 
-            var xAxisData = ['Less than once/week', '1day/week', '2days/week', 'On Weekends:', 'Less than once/week', '1-2days/week', '3-4days/week', '5days/week', 'On Weekdays:'];
+            var xAxisData = ['Less than once/week', '1day/week', '2days/week', {
+                value: 'On Weekends:',
+                textStyle: {
+                    color: 'red'
+                }
+            }, 'Less than once/week', '1-2days/week', '3-4days/week', '5days/week', {
+                value: 'On Weekdays:',
+                textStyle: {
+                    color: 'red'
+                }
+            }];
             var data01 = [];
             var data02 = [];
             // for (var i = 9; i < 19; i++) {
@@ -114,7 +124,14 @@
                             }
                         }
                     },
-                    data: [-1.7, -3.8, -2.0, -0, -0.9, -2.7, -1.7, -7.1, -0],
+                    data: [-1.7, -3.8, -2.0, -0, -0.9, -2.7, -1.7, -7.1, {
+                        value: -20,
+                        itemStyle: {
+                            normal: {
+                                color: 'rgba(255, 255, 255, 0)'
+                            }
+                        }
+                    }],
                     itemStyle: {
                         normal: {
                             color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
