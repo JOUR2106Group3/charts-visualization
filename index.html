@@ -1,0 +1,286 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="main1" style="width: 600px;height:400px;"></div>
+    <h5>On Weekdays</h5>
+    <div id="main2" style="width: 600px;height:100px;"></div>
+    <h5>On Weekends</h5>
+    <div id="main3" style="width: 600px;height:100px;"></div>
+
+    <script>
+        $(function() {
+            var myChart1 = echarts.init(document.getElementById('main1'));
+
+            var xAxisData = ['Less than once/week', '1day/week', '2days/week', 'On Weekends:', 'Less than once/week', '1-2days/week', '3-4days/week', '5days/week', 'On Weekdays:'];
+            var data01 = [];
+            var data02 = [];
+            // for (var i = 9; i < 19; i++) {
+            //     data01.push(Math.round(Math.random() * 5) + 2);
+            //     data02.push(Math.round(Math.random() * 6) + 1);
+            // }
+            option = {
+                title: {
+                    text: 'Frequency of People Using Their Own Bicycles',
+                    subtext: 'Data of 3 Months from Travel Characteristics Survey 2011 Final Report(2014)'
+                },
+                legend: {
+                    data: ['For Businesss, Commuting or School Trips', 'For Other Purposes']
+                },
+                xAxis: {
+                    axisLabel: {
+                        show: false
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                },
+                yAxis: [{
+                    data: xAxisData,
+                    axisLabel: {
+                        inside: true,
+                        textStyle: {
+                            color: '#03a9f4'
+                        }
+                    },
+                    axisLine: {
+                        show: true,
+                        lineStyle: {
+                            color: 'rgba(96, 236, 236)',
+                            type: 'dashed'
+                        }
+                    },
+                    splitLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                }],
+                series: [{
+                    name: 'For Other Purposes',
+                    type: 'bar',
+                    stack: '总量',
+                    barWidth: 10,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'right'
+                        }
+                    },
+                    data: [19.7, 14.0, 8.6, 0, 8.0, 10.0, 4.5, 5.5, 0],
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                                offset: 0,
+                                color: 'transparent'
+                            }, {
+                                offset: 0.4,
+                                color: 'rgba(239, 126, 45, 0.3)'
+                            }, {
+                                offset: 0.8,
+                                color: 'rgba(239, 126, 45, 0.7)'
+                            }, {
+                                offset: 1,
+                                color: 'rgba(239, 126, 45, 1)'
+                            }])
+                        }
+                    }
+                }, {
+                    name: 'For Businesss, Commuting or School Trips',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'left'
+                        }
+                    },
+                    data: [-1.7, -3.8, -2.0, -0, -0.9, -2.7, -1.7, -7.1, -0],
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
+                                offset: 0,
+                                color: 'transparent'
+                            }, {
+                                offset: 0.4,
+                                color: 'rgba(244, 194, 66, 0.3)'
+                            }, {
+                                offset: 0.8,
+                                color: 'rgba(244, 194, 66, 0.7)'
+                            }, {
+                                offset: 1,
+                                color: 'rgba(244, 194, 66, 1)'
+                            }])
+                        }
+                    }
+                }]
+            };
+            myChart1.setOption(option);
+        });
+
+        // precentage shown by bar charts
+        $(function() {
+            var myChart2 = echarts.init(document.getElementById('main2'));
+
+            option = {
+                title: {
+                    text: 'Overall Precentage of Bicycles Usages(On Weekdays)'
+                },
+                legend: {
+                    data: ['For Businesss, Commuting or School Trips', 'For Other Purposes', 'Not Owning Bicycles']
+                },
+                xAxis: {
+                    data: [],
+                    type: 'value',
+                    show: false,
+                    axisTick: {
+                        show: false
+                    }
+                },
+                yAxis: {
+                    type: 'category',
+                    show: false,
+                    axisTick: {
+                        show: false
+                    }
+                },
+                series: [{
+                    type: 'bar',
+                    name: 'For Businesss, Commuting or School Trips',
+                    data: [12.4],
+                    stack: 'income',
+                    barWidth: 30,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside',
+                            formatter: function(obj) {
+                                return obj.value + '%';
+                            }
+                        }
+                    }
+                }, {
+                    type: 'bar',
+                    name: 'For Other Purposes',
+                    data: [28.0],
+                    stack: 'income',
+                    barWidth: 30,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside',
+                            formatter: function(obj) {
+                                return obj.value + '%';
+                            }
+                        }
+                    }
+                }, {
+                    type: 'bar',
+                    name: 'Not Owning Bicycles',
+                    data: [59.6],
+                    stack: 'income',
+                    barWidth: 30,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside',
+                            formatter: function(obj) {
+                                return obj.value + '%';
+                            }
+                        }
+                    }
+                }]
+            };
+            myChart2.setOption(option);
+        });
+        //on weekends
+        $(function() {
+            var myChart3 = echarts.init(document.getElementById('main3'));
+
+            option = {
+                title: {
+                    text: 'Overall Precentage of Bicycles Usages(On Weekends)'
+                },
+                legend: {
+                    data: ['For Businesss, Commuting or School Trips', 'For Other Purposes', 'Not Owning Bicycles']
+                },
+                xAxis: {
+                    data: [],
+                    type: 'value',
+                    show: false,
+                    axisTick: {
+                        show: false
+                    }
+                },
+                yAxis: {
+                    type: 'category',
+                    show: false,
+                    axisTick: {
+                        show: false
+                    }
+                },
+                series: [{
+                    type: 'bar',
+                    name: 'For Businesss, Commuting or School Trips',
+                    data: [7.5],
+                    stack: 'income',
+                    barWidth: 30,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside',
+                            formatter: function(obj) {
+                                return obj.value + '%';
+                            }
+                        }
+                    }
+                }, {
+                    type: 'bar',
+                    name: 'For Other Purposes',
+                    data: [42.3],
+                    stack: 'income',
+                    barWidth: 30,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside',
+                            formatter: function(obj) {
+                                return obj.value + '%';
+                            }
+                        }
+                    }
+                }, {
+                    type: 'bar',
+                    name: 'Not Owning Bicycles',
+                    data: [100 - 42.3 - 7.5],
+                    stack: 'income',
+                    barWidth: 30,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside',
+                            formatter: function(obj) {
+                                return obj.value + '%';
+                            }
+                        }
+                    }
+                }]
+            };
+            myChart3.setOption(option);
+        });
+    </script>
+</body>
+
+</html>
